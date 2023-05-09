@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matador de Monstro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel scores">
+            <div class="score">
+                <img src="heroi.png" alt="jogador">
+                <h1>Jogador</h1>
+                <div class="life-bar">
+                    <div class="life"
+                         :class="{danger: lifejogador <20}"
+                         :style="{width: lifejogador + '%'}"></div>
+                </div>
+                <div>{{lifejogador}}%</div>
+            </div>
+            <div class="score">
+                <img src="golem.png" alt="monstro">
+                <h1>Monstro</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: lifemonstro <20}"
+                        :style="{width: lifemonstro + '%'}"></div>
+                </div>
+                <div>{{lifemonstro}}%</div>
+            </div>
+        </div>
+        <div v-if="hasResult" class="panel result">
+            <div v-if="lifemonstro == 0" class="win">Você ganhou!!! :)</div>
+            <div v-else="lifejogador" class="lose">Você perdeu! :(</div>
+        </div>
+        <div class="panel buttons">
+            <template v-if="novojogo">
+                <button @click="atack()" class="btn attack">Ataque</button>
+                <button class="btn especial-attack">Ataque Especial</button>
+                <button class="btn heal">Curar</button>
+                <button @click="desistir()" class="btn give-up">Desistir</button>
+            </template>
+            <button class="btn new-game" v-if="!novojogo" @click="iniciar()">Iniciar Jogo</button>
+        </div>
+        <div v-if="logs" class="panel logs">
+            <ul>
+                <li v-for="ataquep in atackplayer">O ataque do player foi:{{ataquep}}</li>
+                <li v-for="ataquem in atackmonstro">O ataque do monstro foi:{{ataquem}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
