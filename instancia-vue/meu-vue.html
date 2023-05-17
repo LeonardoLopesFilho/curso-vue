@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <div id="app">
+
+    </div>
+
+
+    <script>
+        function MeuVue(params) {
+            this.$el = document.querySelector(params.el)
+            this.$data = params.data
+
+            for (let atr in this.$data) {
+                Object.defineProperty(this, atr, {
+                    get: () => {
+                        return this.$data[atr]
+                    },
+                    set: value => {
+                        //...
+                        this.$data[atr] = value
+                        //....
+                    }
+                })
+            }
+        }
+
+        const vm = MeuVue({
+            el: '#app',
+            data: {
+                nome:'maria',
+                sobrenome: 'Silva'
+            }
+        })
+
+        console.log(vm.$data.nome)
+    </script>
+
+</body>
+
+</html>
