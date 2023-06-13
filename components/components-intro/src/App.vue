@@ -1,17 +1,18 @@
 <template>
     <div id="app">
-        <h1>teste</h1>
-        <p>{{ this.count }}</p>
+        <Counters />
     </div>
 </template>
 
 <script>
+import Counters from './components/Contadores'
+
 export default {
-    data: function () {
-    return {
-      count:0
-    }
-}
+    
+    components:{
+        Counters
+    },
+
 }
 </script>
 
